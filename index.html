@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>工作日志</title>
+    <link rel="stylesheet" href="modules/bootstrap/dist/css/bootstrap.min.css">
+</head>
+<!--{{currentDate | date:'yyyy-MM-dd'}} 青苔·深巷-->
+<body>
+<div class="jumbotron" ng-app="mainApp">
+    <div class="container" ng-controller="mainController">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="panel panel-success">
+                    <div class="panel-heading">工作日志</div>
+                    <div class="panel-body">
+                        <input type="search" ng-model="searchData" class="form-control" placeholder="请输入检索内容"/>
+                        <div class="checkbox" style="text-align: right;">
+                            <strong>隐藏列:</strong>
+                            <label><input type="checkbox" disabled ng-model="showType"/>标签</label>
+                            <label><input type="checkbox" ng-model="showContent"/>内容</label>
+                            <label><input type="checkbox" ng-model="showSaveDate"/>日期</label>
+                        </div>
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>序</th>
+                                <th><span class="glyphicon glyphicon-home"></span></th>
+                                <th>标签</th>
+                                <th ng-show="showContent">内容</th>
+                                <th ng-show="showSaveDate">日期</th>
+                                <th>删除</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ng-repeat="item in tasks | filter:searchData track by $index " >
+                                <th scope="row">{{$index+1}}</th>
+                                <td><span ng-class="item.completed?'glyphicon  glyphicon-star':'glyphicon  glyphicon-star-empty'" ng-click="changeCompleted(item.id)"></span></td>
+                                <td>{{item.type}}</td>
+                                <td ng-show="showContent">{{item.content}}</td>
+                                <td ng-show="showSaveDate">{{item.saveDate}}</td>
+                                <td><span class="glyphicon glyphicon-remove" ng-click="remove(item.id)"></span></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="panel-footer">
+                        共有<strong>{{tasks.length}}</strong>条记录
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="panel panel-info">
+                    <div class="panel-heading">记录板</div>
+                    <form ng-submit="add()">
+                        <div class="panel-body">
+                            <div>
+                                <label>标签</label>
+                                <input class="form-control" ng-model="type" type="text" placeholder="输入所属标签…" style="width:100%;"/>
+                            </div>
+                            <div>
+                                <label>内容</label>
+                                <textarea class="form-control" ng-model="content"  placeholder="somethings to write…"  style="width:100%;height:200px"></textarea>
+                            </div>
+                        </div>
+                        <div class="panel-footer" style="text-align: right;">
+                            <button class="btn btn-info btn-block" ng-click="add()">保存</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="modules/angular/angular.min.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
