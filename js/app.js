@@ -55,6 +55,36 @@
             }
             saveWindow();//保存至客户端
         }
+        
+        $scope.doConvert = function(){
+			var rawData = relpace_line($scope.s_array_sql);
+			var rawArray = rawData.split(',');
+			var results = [];
+			for(var k in rawArray){
+				results.push("'" +rawArray[k] + "'")
+			}
+			$scope.s_array_sql = results.join(',');
+        }
+        
+        $scope.doNation = function(){
+        	var rawData = relpace_line($scope.s_nation);
+			var rawArray = rawData.split(',');
+			var results = [];
+			for(var k in rawArray){
+				results.push(rawArray[k].split('=')[0] + "=" + rawArray[k].split('=')[0]);
+			}
+			$scope.s_nation = results.join('\n');
+        }
+        
+        $scope.doCode = function(){
+        	var rawData = relpace_line($scope.s_nation);
+			var rawArray = rawData.split(',');
+			var results = [];
+			for(var k in rawArray){
+				results.push('lang_json_t.' + rawArray[k].split('=')[0]);
+			}
+			$scope.s_nation = results.join('\n');
+        }
 
     }]);
 })(angular);
