@@ -68,6 +68,26 @@
                         </div>
                     </form>
                 </div>
+                 <div class="panel panel-warning">
+                    <div class="panel-heading">格式化</div>
+                    <form>
+                        <div class="panel-body">
+                            <div>
+                                <label>数组转换SQL字符串</label>
+                                <textarea class="form-control" ng-model="s_array_sql"  placeholder="请输入需要格式的数组…"  style="width:100%;height:100px"></textarea>
+                            </div>
+                            <div>
+                                <label>反转国际化</label>
+                                <textarea class="form-control" ng-model="s_nation"  style="width:100%;height:100px"></textarea>
+                            </div>                           
+                        </div>
+                        <div class="panel-footer" style="text-align: right;">
+                            <button class="btn btn-warning" ng-click="doConvert()">SQL</button>
+                            <button class="btn btn-warning" ng-click="doNation()">国际化</button>
+                            <button class="btn btn-warning" ng-click="doCode()">编码</button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
