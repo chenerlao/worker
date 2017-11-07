@@ -84,7 +84,18 @@
 				results.push('lang_json_t.' + rawArray[k].split('=')[0]);
 			}
 			$scope.s_nation = results.join('\n');
-        }        
+        }
+	
+	//替换所有的回车换行  
+        function relpace_line(content){  
+            try{
+            	content = content.replace(/\r\n/g,",")  
+                content = content.replace(/\n/g,",");  
+            }catch(e) {  
+                alert(e.message);  
+            }
+            return content;  
+        }
 
     }]);
 })(angular);
