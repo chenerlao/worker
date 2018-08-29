@@ -85,7 +85,27 @@
 			}
 			$scope.s_nation = results.join('\n');
         }
-	
+
+        /**
+         * 生成代码
+         */
+        $scope.getCode = function(){
+            if(!$scope.templateValue || !$scope.template){
+                return;
+            }
+            var v = $scope.templateValue.replace(/(^\s+)|(\s+$)/g,"");
+            v = v.replace(/\s/g,"");
+            $scope.templateValue = v;
+            var rawArray = $scope.templateValue.split(',');
+            var results = [];
+            var subStr = new RegExp('#','g');//创建正则表达式对象
+            for(var k in rawArray){
+                var result = $scope.template.replace(subStr,rawArray[k].replace(/\s+/g, ""));//把'is'替换为空字符串
+                console.log(result);
+                results.push(result);
+            }
+            $scope.templateCode = results.join('\n');
+        }
 	//替换所有的回车换行  
         function relpace_line(content){  
             try{
