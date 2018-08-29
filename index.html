@@ -87,7 +87,29 @@
                             <button class="btn btn-warning" ng-click="doCode()">编码</button>
                         </div>
                     </form>
-                </div>               
+                </div>
+                <div class="panel panel-primary">
+                    <div class="panel-heading">格式化</div>
+                    <form>
+                        <div class="panel-body">
+                            <div>
+                                <label>模板</label>
+                                <input class="form-control" ng-model="template" type="text" placeholder="输入模板值…" style="width:100%;"/>
+                            </div>
+                            <div>
+                                <label>模板值</label>
+                                <input class="form-control" ng-model="templateValue" type="text" placeholder="输入模板值，多个用英文逗号隔开…" style="width:100%;"/>
+                            </div>
+                            <div>
+                                <label>模板代码</label>
+                                <textarea class="form-control" ng-model="templateCode"  style="width:100%;height:100px"></textarea>
+                            </div>
+                        </div>
+                        <div class="panel-footer" style="text-align: right;">
+                            <button class="btn btn-primary btn-block" ng-click="getCode()">生成代码</button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
